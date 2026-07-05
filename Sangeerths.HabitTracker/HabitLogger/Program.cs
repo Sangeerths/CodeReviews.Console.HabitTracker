@@ -1,5 +1,6 @@
 ﻿using HabitLogger.Core;
 using Spectre.Console;
+using System.Globalization;
 
 namespace HabitLogger
 {
@@ -81,7 +82,7 @@ namespace HabitLogger
         static DateTime GetDate()
         {
             string dateInput = AnsiConsole.Ask<string>("Enter the date (yyyy-MM-dd):");
-            while (!DateTime.TryParse(dateInput, out DateTime date))
+            while (!DateTime.TryParseExact(dateInput, "yyyy-MM-dd",CultureInfo.InvariantCulture,DateTimeStyles.None, out DateTime date))
             {
                 AnsiConsole.Clear();
                 AnsiConsole.MarkupLine("[red]Invalid date format. Please enter a valid date in the format yyyy-MM-dd.[/]\n");
